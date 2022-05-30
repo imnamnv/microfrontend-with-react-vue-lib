@@ -7,7 +7,7 @@ on:
     branches:
       - master
     paths:
-      - "package/container/**" # Triggers the workflow when inside of container was changed
+      - "packages/container/**" # Triggers the workflow when inside of container was changed
 defaults:
   run:
     working-directory: packages/container # all workflow will be run in container
