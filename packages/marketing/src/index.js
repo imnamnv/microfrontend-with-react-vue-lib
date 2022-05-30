@@ -1,1 +1,1 @@
-import("./bootstrap");
+import("./bootstrap"); //bacauses share in webpack
