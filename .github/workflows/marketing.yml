@@ -1,4 +1,4 @@
-name: deploy-container
+name: deploy-marketing
 
 # Controls when the workflow will run
 on:
@@ -7,10 +7,10 @@ on:
     branches:
       - master
     paths:
-      - "packages/container/**" # Triggers the workflow when inside of container was changed
+      - "packages/marketing/**" # Triggers the workflow when inside of marketing was changed
 defaults:
   run:
-    working-directory: packages/container # all workflow will be run in container
+    working-directory: packages/marketing # all workflow will be run in marketing
 
 # A workflow run is made up of one or more jobs that can run sequentially<tuan tu> or in parallel<song song>
 jobs:
@@ -25,17 +25,15 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm install
       - run: npm run build
-        env:
-          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }} # variable in env to help webpack get value
 
       # Push into AWS
       - uses: shinyinc/action-aws-cli@v1.2
-      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
+      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/marketing/latest
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-west-2
-      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/container/latest/index.html" # remove cache in index.html file when rebuild
+      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/marketing/latest/remoteEntry.js" # remove cache in index.html file when rebuild
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
