@@ -8,6 +8,7 @@ const generateClassName = createGenerateClassName({
   productionPrefix: "co",
 });
 
+//<BrowserRouter> will creata Browser History
 export default () => {
   return (
     <BrowserRouter>
