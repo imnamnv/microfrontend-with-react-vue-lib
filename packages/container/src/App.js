@@ -11,7 +11,7 @@ const generateClassName = createGenerateClassName({
   productionPrefix: "co",
 });
 
-//<BrowserRouter> will creata Browser History
+//<BrowserRouter> will create Browser History
 export default () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
