@@ -6,11 +6,9 @@ import App from "./App";
 const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
   const history =
     defaultHistory ||
-    createMemoryHistory(
-      createMemoryHistory({
-        initialEntries: [initialPath], // error click 2 times to load content
-      })
-    ); //create memory history
+    createMemoryHistory({
+      initialEntries: [initialPath], // error click 2 times to load content
+    }); //create memory history
 
   if (onNavigate) history.listen(onNavigate); //Whenever some navigation occurs, this history object is going to call onNavigate function
 
@@ -27,7 +25,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
 //if we are in development and in isolation
 //call mount immediately
 if (process.env.NODE_ENV === "development") {
-  const devRoot = document.querySelector("#_marketing-dev-root");
+  const devRoot = document.querySelector("#_auth-dev-root");
   if (devRoot) {
     mount(devRoot, { defaultHistory: createBrowserHistory() });
   }

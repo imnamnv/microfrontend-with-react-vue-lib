@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { mount } from "marketing/MarketingApp"; // if can not find in node_modules -> call by ModuleFederationPlugin
+import { mount } from "auth/AuthApp"; // if can not find in node_modules -> call by ModuleFederationPlugin
 import { useHistory } from "react-router-dom";
 
 export default () => {
