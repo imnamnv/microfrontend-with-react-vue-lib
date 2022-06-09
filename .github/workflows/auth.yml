@@ -1,4 +1,4 @@
-name: deploy-marketing
+name: deploy-auth
 
 # Controls when the workflow will run
 on:
@@ -7,10 +7,10 @@ on:
     branches:
       - master
     paths:
-      - "packages/marketing/**" # Triggers the workflow when inside of marketing was changed
+      - "packages/auth/**" # Triggers the workflow when inside of auth was changed
 defaults:
   run:
-    working-directory: packages/marketing # all workflow will be run in marketing
+    working-directory: packages/auth # all workflow will be run in auth
 
 # A workflow run is made up of one or more jobs that can run sequentially<tuan tu> or in parallel<song song>
 jobs:
@@ -28,12 +28,12 @@ jobs:
 
       # Push into AWS
       - uses: shinyinc/action-aws-cli@v1.2
-      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/marketing/latest
+      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/auth/latest
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-west-2
-      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/marketing/latest/remoteEntry.js" # remove cache in index.html file when rebuild  because index.html not have hash in filename
+      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/auth/latest/remoteEntry.js" # remove cache in index.html file when rebuild because index.html not have hash in filename
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
