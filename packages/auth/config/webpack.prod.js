@@ -7,7 +7,7 @@ const prodConfig = {
   mode: "production",
   output: {
     filename: "[name].[contenthash].js",
-    publicPath: "/auth/latest/", // add publicPath before filename in js tab -> /container/latest/main.js
+    publicPath: "/auth/latest/", // add publicPath before filename in js tab -> /auth/latest/main.js
   },
   plugins: [
     new ModuleFederationPlugin({

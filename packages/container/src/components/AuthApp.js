@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { mount } from "auth/AuthApp"; // if can not find in node_modules -> call by ModuleFederationPlugin
 import { useHistory } from "react-router-dom";
 
-export default () => {
+export default ({ onSignIn }) => {
   const ref = useRef(null);
   const history = useHistory();
 
@@ -15,6 +15,7 @@ export default () => {
         if (pathname !== nextPathname) history.push(nextPathname);
       },
       initialPath: history.location.pathname,
+      onSignIn,
     });
     history.listen(onParentNavigate); //click link on container will sync to marketing
   }, []);
