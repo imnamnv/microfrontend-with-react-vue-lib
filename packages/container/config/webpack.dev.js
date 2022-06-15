@@ -22,6 +22,7 @@ const devConfig = {
         //marketing in quote must same name in name: "marketing"  in modulefederation in wepack config file
         //key marketing will called in import in container
         auth: "auth@http://localhost:8082/remoteEntry.js",
+        dashboard: "dashboard@http://localhost:8083/remoteEntry.js",
       },
       // shared: ["react", "react-dom"],
       //share module in other App, create a copy file and share to other App to use(if other app use same major version)

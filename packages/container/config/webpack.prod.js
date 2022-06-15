@@ -17,6 +17,7 @@ const prodConfig = {
       remotes: {
         marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`, // /marketing we deploy all of them to same origin url, not like localhost:8081,8082
         auth: `auth@${domain}/auth/latest/remoteEntry.js`,
+        dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies, //share automatic
     }),
