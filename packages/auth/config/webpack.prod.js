@@ -7,14 +7,14 @@ const prodConfig = {
   mode: "production",
   output: {
     filename: "[name].[contenthash].js",
-    publicPath: "/dashboard/latest/", // add publicPath before filename in js tab -> /auth/latest/main.js
+    publicPath: "/auth/latest/", // add publicPath before filename in js tab -> /auth/latest/main.js
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "dashboard",
+      name: "auth",
       filename: "remoteEntry.js",
       exposes: {
-        "./DashboardApp": "./src/bootstrap",
+        "./AuthApp": "./src/bootstrap",
       },
       shared: packageJson.dependencies,
     }),
